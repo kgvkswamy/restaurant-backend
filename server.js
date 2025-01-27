@@ -137,4 +137,15 @@ app.get('/api/dashboard', async (req, res) => {
     }
 });
 
+const express = require('express');
+const app = express();
+const productRoutes = require('./routes/productRoutes'); // Import the productRoutes file
+
+app.use('/api', productRoutes); // Use '/api' as the base path for the product routes
+
+// Your other server configuration and middleware go here
+app.listen(5000, () => {
+  console.log('Server is running on port 5000');
+});
+
 
