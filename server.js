@@ -25,6 +25,11 @@ const productSchema = new mongoose.Schema({
     quantity: Number
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is healthy and running!');
+});
+
+
 // Create a model for the product
 const Product = mongoose.model('Product', productSchema);
 
