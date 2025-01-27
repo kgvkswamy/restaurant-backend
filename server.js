@@ -148,4 +148,25 @@ app.listen(5000, () => {
   console.log('Server is running on port 5000');
 });
 
+const express = require('express');
+const mongoose = require('mongoose');
+const productRoutes = require('./routes/productRoutes'); // Path to your product routes
+
+const app = express();
+
+// Middleware
+app.use(express.json()); // To parse JSON requests
+
+// Use product routes
+app.use('/api', productRoutes); // This should prefix your routes with `/api`, so your product route will be `/api/products`
+
+// MongoDB connection (make sure this is correct)
+mongoose.connect('mongodb://your_mongo_uri', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
+// Server listening
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
+});
 
